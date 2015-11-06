@@ -270,7 +270,7 @@ void addSpacesForConnectors(string &input)
 }
 
 //if connectors detected
-void parseMultipleExec(string inputLine) 
+bool parseMultipleExec(string inputLine) 
 {
   bool status = true;	 
 	
@@ -283,6 +283,7 @@ void parseMultipleExec(string inputLine)
   
   addSpacesForConnectors(inputLine);
  
+
 /* 
   vector<string> commandVect1;
   char_separator<char> sep(" \r\a\t\n", ";&|");    //keeps ;&|
@@ -374,7 +375,7 @@ void parseMultipleExec(string inputLine)
 //end:	
   delete[] charInputLine;
   	
-  //return status;
+ return status;
 }
 
 void shell()
@@ -397,7 +398,7 @@ jump:
     if( inputLine.find(";") != string::npos || inputLine.find("&&") != string::npos
        || inputLine.find("||") != string::npos || inputLine.find("#") != string::npos ) 
     {
-      parseMultipleExec(inputLine);
+      status =  parseMultipleExec(inputLine);
       goto jump;
     }
 
